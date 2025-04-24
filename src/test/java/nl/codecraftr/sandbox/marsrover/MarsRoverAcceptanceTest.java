@@ -15,15 +15,15 @@ class MarsRoverAcceptanceTest {
 
     @Test
     void roverShouldTraverseMap() {
-        var result = MarsRoverSimulator.run("4,0", "E", MAP, "FFLFFFRFFLF");
+        var result = MarsRoverSimulator.run("0,4", "E", MAP, "FFLFFFRFFLF");
 
-        assertThat(result).isEqualTo("Marsrover at '0,4' heading 'North'");
+        assertThat(result).isEqualTo("Marsrover at '4,0' heading 'North'");
     }
 
     @Test
     void roverShouldCrashWhenItHitsAnObstacle() {
-        var result = MarsRoverSimulator.run("4,0", "E", MAP, "FLF");
+        var result = MarsRoverSimulator.run("0,4", "E", MAP, "FLF");
 
-        assertThat(result).isEqualTo("Marsrover crashed at '3,1' heading 'North'");
+        assertThat(result).isEqualTo("Marsrover crashed at '1,3' heading 'North'");
     }
 }
