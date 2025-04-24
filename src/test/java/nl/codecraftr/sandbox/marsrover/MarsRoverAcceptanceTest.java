@@ -22,7 +22,7 @@ class MarsRoverAcceptanceTest {
 
     @Test
     void roverShouldCrashWhenItHitsAnObstacle() {
-        var result = MarsRoverSimulator.run("0,4", "E", MAP, "FLF");
+        var result = MarsRoverSimulator.run("5,1", "S", MAP, "BRFF");
 
         assertThat(result).isEqualTo("Marsrover crashed at '1,3' heading 'North'");
     }
