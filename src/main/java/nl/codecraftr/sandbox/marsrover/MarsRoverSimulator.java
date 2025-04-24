@@ -7,6 +7,6 @@ import lombok.experimental.UtilityClass;
  */
 class MarsRoverSimulator {
     public static String run(String initialPosition, String initialHeading, String map, String commands) {
-        return "";
+        return "Marsrover at '' heading ''";
     }
 }
