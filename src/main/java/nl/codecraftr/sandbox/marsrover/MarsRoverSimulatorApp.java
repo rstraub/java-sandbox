@@ -5,7 +5,7 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 /* https://codingdojo.org/kata/mars-rover/
  */
-class MarsRoverSimulator {
+class MarsRoverSimulatorApp {
     public static String run(String initialPosition, String initialDirection, String map, String commands) {
         var position = PositionParser.parse(initialPosition);
         var direction = DirectionParser.parse(initialDirection);
