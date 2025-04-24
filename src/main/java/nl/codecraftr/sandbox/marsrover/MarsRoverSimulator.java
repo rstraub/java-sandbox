@@ -1,17 +1,16 @@
 package nl.codecraftr.sandbox.marsrover;
 
-import static nl.codecraftr.sandbox.marsrover.Direction.NORTH;
-
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
 /* https://codingdojo.org/kata/mars-rover/
  */
 class MarsRoverSimulator {
-    public static String run(String initialPosition, String initialHeading, String map, String commands) {
+    public static String run(String initialPosition, String initialDirection, String map, String commands) {
         var position = PositionParser.parse(initialPosition);
+        var direction = DirectionParser.parse(initialDirection);
 
-        var rover = new MarsRover(position, NORTH);
+        var rover = new MarsRover(position, direction);
         return "Marsrover at '%s' heading '%s'".formatted(rover.position(), rover.direction());
     }
 }

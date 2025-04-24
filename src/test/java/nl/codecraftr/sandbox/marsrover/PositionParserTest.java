@@ -3,6 +3,7 @@ package nl.codecraftr.sandbox.marsrover;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.stream.Stream;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -24,5 +25,6 @@ class PositionParserTest {
     }
 
     @Test
+    @Disabled("TODO cover unhappy paths")
     void throwsExceptionGivenInvalidString() {}
 }
