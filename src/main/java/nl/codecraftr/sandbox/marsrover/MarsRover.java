@@ -8,19 +8,12 @@ import lombok.With;
 
 record MarsRover(@With Position position, @With Direction direction) {
     public MarsRover instruct(Command command) {
-        if (command == TURN_LEFT) {
-            return turnLeft();
-        }
-        if (command == TURN_RIGHT) {
-            return turnRight();
-        }
-        if (command == FORWARD) {
-            return moveForward();
-        }
-        if (command == BACKWARD) {
-            return moveBackward();
-        }
-        return this;
+        return switch (command) {
+            case TURN_LEFT -> turnLeft();
+            case TURN_RIGHT -> turnRight();
+            case FORWARD -> moveForward();
+            case BACKWARD -> moveBackward();
+        };
     }
 
     private MarsRover moveBackward() {
