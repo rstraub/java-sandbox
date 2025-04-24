@@ -61,4 +61,22 @@ class MarsRoverTest {
                 Arguments.of(EAST, new Position(0, 0), new Position(1, 0)),
                 Arguments.of(WEST, new Position(4, 0), new Position(3, 0)));
     }
+
+    @ParameterizedTest
+    @MethodSource("backwards")
+    void backwardChangesCoordinate(Direction initialDirection, Position initialPosition, Position expectedPosition) {
+        var result = aRover.withDirection(initialDirection)
+                .withPosition(initialPosition)
+                .instruct(BACKWARD);
+
+        assertThat(result.position()).isEqualTo(expectedPosition);
+    }
+
+    private static Stream<Arguments> backwards() {
+        return Stream.of(
+                Arguments.of(SOUTH, new Position(0, 4), new Position(0, 3)),
+                Arguments.of(NORTH, new Position(0, 0), new Position(0, 1)),
+                Arguments.of(EAST, new Position(4, 0), new Position(3, 0)),
+                Arguments.of(WEST, new Position(0, 0), new Position(1, 0)));
+    }
 }

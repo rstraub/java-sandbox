@@ -4,4 +4,5 @@ enum Command {
     TURN_LEFT,
     TURN_RIGHT,
     FORWARD,
+    BACKWARD,
 }

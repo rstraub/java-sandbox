@@ -17,7 +17,22 @@ record MarsRover(@With Position position, @With Direction direction) {
         if (command == FORWARD) {
             return moveForward();
         }
+        if (command == BACKWARD) {
+            return moveBackward();
+        }
         return this;
+    }
+
+    private MarsRover moveBackward() {
+        var newPosition =
+                switch (direction) {
+                    case NORTH -> position.increaseY();
+                    case EAST -> position.decreaseX();
+                    case SOUTH -> position.decreaseY();
+                    case WEST -> position.increaseX();
+                };
+
+        return withPosition(newPosition);
     }
 
     private MarsRover moveForward() {
