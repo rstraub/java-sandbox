@@ -6,11 +6,15 @@ import lombok.experimental.UtilityClass;
 /* https://codingdojo.org/kata/mars-rover/
  */
 class MarsRoverSimulatorApp {
-    public static String run(String initialPosition, String initialDirection, String map, String commands) {
-        var position = PositionParser.parse(initialPosition);
-        var direction = DirectionParser.parse(initialDirection);
+    public static String run(String rawPosition, String rawDirection, String rawMap, String rawCommands) {
+        var initialPosition = PositionParser.parse(rawPosition);
+        var initialDirection = DirectionParser.parse(rawDirection);
+        var rover = new MarsRover(initialPosition, initialDirection);
 
-        var rover = new MarsRover(position, direction);
-        return "Marsrover at '%s' heading '%s'".formatted(rover.position(), rover.direction());
+        var commands = CommandParser.parse(rawCommands);
+
+        var changedRover = rover.instruct(commands.getFirst());
+
+        return "Marsrover at '%s' heading '%s'".formatted(changedRover.position(), changedRover.direction());
     }
 }
