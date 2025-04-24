@@ -9,7 +9,9 @@ import lombok.experimental.UtilityClass;
  */
 class MarsRoverSimulator {
     public static String run(String initialPosition, String initialHeading, String map, String commands) {
-        var rover = new MarsRover(new Position(0, 0), NORTH);
+        var position = PositionParser.parse(initialPosition);
+
+        var rover = new MarsRover(position, NORTH);
         return "Marsrover at '%s' heading '%s'".formatted(rover.position(), rover.direction());
     }
 }

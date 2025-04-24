@@ -1,8 +1,6 @@
 package nl.codecraftr.sandbox.marsrover;
 
-import static nl.codecraftr.sandbox.marsrover.Command.*;
 import static nl.codecraftr.sandbox.marsrover.Direction.*;
-import static nl.codecraftr.sandbox.marsrover.Direction.EAST;
 
 import lombok.With;
 

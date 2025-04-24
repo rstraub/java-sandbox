@@ -15,9 +15,9 @@ class MarsRoverAcceptanceTest {
 
     @Test
     void roverShouldTraverseMap() {
-        var result = MarsRoverSimulator.run("0,4", "E", MAP, "FFLFFFRFFLF");
+        var result = MarsRoverSimulator.run("0,4", "E", MAP, "FFLFFFRFFLFR");
 
-        assertThat(result).isEqualTo("Marsrover at '4,0' heading 'North'");
+        assertThat(result).isEqualTo("Marsrover at '4,0' heading 'East'");
     }
 
     @Test
