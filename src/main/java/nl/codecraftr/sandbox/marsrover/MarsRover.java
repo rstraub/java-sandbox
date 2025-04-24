@@ -1,5 +1,8 @@
 package nl.codecraftr.sandbox.marsrover;
 
+import static nl.codecraftr.sandbox.marsrover.Direction.*;
+import static nl.codecraftr.sandbox.marsrover.Direction.EAST;
+
 import lombok.With;
 
 record MarsRover(Position position, @With Direction direction) {
@@ -7,16 +10,30 @@ record MarsRover(Position position, @With Direction direction) {
         if (command == Command.TURN_LEFT) {
             return turnLeft();
         }
+        if (command == Command.TURN_RIGHT) {
+            return turnRight();
+        }
         return this;
+    }
+
+    private MarsRover turnRight() {
+        var direction =
+                switch (direction()) {
+                    case NORTH -> EAST;
+                    case EAST -> SOUTH;
+                    case SOUTH -> WEST;
+                    case WEST -> NORTH;
+                };
+        return withDirection(direction);
     }
 
     private MarsRover turnLeft() {
         var direction =
                 switch (direction()) {
-                    case Direction.NORTH -> Direction.WEST;
-                    case Direction.WEST -> Direction.SOUTH;
-                    case Direction.SOUTH -> Direction.EAST;
-                    case Direction.EAST -> Direction.NORTH;
+                    case NORTH -> WEST;
+                    case WEST -> SOUTH;
+                    case SOUTH -> EAST;
+                    case EAST -> NORTH;
                 };
         return withDirection(direction);
     }
