@@ -1,11 +1,8 @@
 package nl.codecraftr.sandbox.marsrover;
 
-import lombok.experimental.UtilityClass;
-
-@UtilityClass
 /* https://codingdojo.org/kata/mars-rover/
  */
-class MarsRoverSimulatorApp {
+public class MarsRoverSimulatorApp {
     public static String run(String rawPosition, String rawDirection, String rawMap, String rawCommands) {
         var initialPosition = PositionParser.parse(rawPosition);
         var initialDirection = DirectionParser.parse(rawDirection);
@@ -13,8 +10,12 @@ class MarsRoverSimulatorApp {
 
         var commands = CommandParser.parse(rawCommands);
 
-        var changedRover = rover.instruct(commands.getFirst());
+        var simulatedRover = MarsRoverSimulator.simulate(rover, commands);
 
-        return "Marsrover at '%s' heading '%s'".formatted(changedRover.position(), changedRover.direction());
+        return formatResults(simulatedRover);
+    }
+
+    private static String formatResults(MarsRover simulatedRover) {
+        return "Marsrover at '%s' heading '%s'".formatted(simulatedRover.position(), simulatedRover.direction());
     }
 }
