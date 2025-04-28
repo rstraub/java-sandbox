@@ -11,9 +11,8 @@ public class MarsRoverSimulatorApp {
         var commands = CommandParser.parse(rawCommands);
 
         var map = MarsMapParser.parse(rawMap);
-        System.out.println(map);
 
-        var simulatedRover = MarsRoverSimulator.simulate(rover, commands);
+        var simulatedRover = MarsRoverSimulator.simulate(rover, map, commands);
 
         return formatResults(simulatedRover);
     }
