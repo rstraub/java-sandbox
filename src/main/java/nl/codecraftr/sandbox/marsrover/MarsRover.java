@@ -4,7 +4,7 @@ import static nl.codecraftr.sandbox.marsrover.Direction.*;
 
 import lombok.With;
 
-record MarsRover(@With Position position, @With Direction direction) {
+record MarsRover(@With Position position, @With Direction direction, @With boolean operational) {
     public MarsRover instruct(Command command) {
         return switch (command) {
             case TURN_LEFT -> turnLeft();
@@ -58,5 +58,9 @@ record MarsRover(@With Position position, @With Direction direction) {
                     case EAST -> NORTH;
                 };
         return withDirection(newDirection);
+    }
+
+    public MarsRover crashed() {
+        return withOperational(false);
     }
 }

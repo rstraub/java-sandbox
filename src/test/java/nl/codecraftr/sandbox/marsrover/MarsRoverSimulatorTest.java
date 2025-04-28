@@ -15,7 +15,7 @@ class MarsRoverSimulatorTest {
 
     @Test
     void shouldHandleMultipleCommands() {
-        var rover = new MarsRover(new Position(0, 0), EAST);
+        var rover = new MarsRover(new Position(0, 0), EAST, true);
         var commands = List.of(
                 FORWARD, // 1,0
                 TURN_LEFT, // 1,0
@@ -37,14 +37,14 @@ class MarsRoverSimulatorTest {
 
     @Test
     void roverStaysAtPositionWhenCrashed() {
-        var rover = new MarsRover(new Position(1, 0), EAST);
+        var rover = new MarsRover(new Position(1, 0), EAST, true);
         var commands = List.of(
                 FORWARD, // Crash 2,0
                 BACKWARD, // should not have effect
                 TURN_RIGHT // should not have effect
                 );
 
-        var expected = rover.instruct(FORWARD);
+        var expected = rover.instruct(FORWARD).crashed();
 
         var result = MarsRoverSimulator.simulate(rover, MAP, commands);
 

@@ -6,28 +6,21 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 class MarsRoverSimulator {
     MarsRover simulate(MarsRover rover, MarsMap map, List<Command> commands) {
-        var initial = new MoveResult(rover, Result.MOVED);
-
-        var reduce = commands.stream()
-                .reduce(initial, (result, command) -> moveRover(result, map, command), (result1, result2) -> result1);
-
-        return reduce.rover();
+        return commands.stream()
+                .reduce(rover, (current, command) -> moveRover(current, map, command), (rover1, rover2) -> rover1);
     }
 
-    private MoveResult moveRover(MoveResult moveResult, MarsMap map, Command command) {
-        var moved = moveResult.rover.instruct(command);
-
-        if (map.canMoveTo(moveResult.rover.position())) {
-            return new MoveResult(moved, Result.MOVED);
+    private MarsRover moveRover(MarsRover rover, MarsMap map, Command command) {
+        if (!rover.operational()) {
+            return rover;
         }
 
-        return new MoveResult(moveResult.rover, Result.CRASHED);
-    }
+        var moved = rover.instruct(command);
 
-    private record MoveResult(MarsRover rover, Result result) {}
+        if (map.canMoveTo(moved.position())) {
+            return moved;
+        }
 
-    private enum Result {
-        MOVED,
-        CRASHED
+        return moved.crashed();
     }
 }

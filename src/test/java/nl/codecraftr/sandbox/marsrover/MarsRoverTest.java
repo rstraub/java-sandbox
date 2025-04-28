@@ -10,7 +10,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class MarsRoverTest {
-    private static final MarsRover aRover = new MarsRover(new Position(0, 0), NORTH);
+    private static final MarsRover aRover = new MarsRover(new Position(0, 0), NORTH, true);
 
     @ParameterizedTest
     @MethodSource("turnLeft")
