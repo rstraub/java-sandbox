@@ -18,6 +18,12 @@ public class MarsRoverSimulatorApp {
     }
 
     private static String formatResults(MarsRover simulatedRover) {
-        return "Marsrover at '%s' heading '%s'".formatted(simulatedRover.position(), simulatedRover.direction());
+        if (simulatedRover.operational()) {
+            return "Marsrover moved to '%s' heading '%s'"
+                    .formatted(simulatedRover.position(), simulatedRover.direction());
+        }
+
+        return "Marsrover crashed at '%s' heading '%s'"
+                .formatted(simulatedRover.position(), simulatedRover.direction());
     }
 }

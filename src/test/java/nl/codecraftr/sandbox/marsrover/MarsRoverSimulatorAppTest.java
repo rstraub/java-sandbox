@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 
-class MarsRoverAppTest {
+class MarsRoverSimulatorAppTest {
     private static final String MAP = """
       ..X..
       .....
@@ -17,13 +17,13 @@ class MarsRoverAppTest {
     void roverShouldTraverseMap() {
         var result = MarsRoverSimulatorApp.run("0,4", "E", MAP, "FFLFFFRFFLFR");
 
-        assertThat(result).isEqualTo("Marsrover at '4,0' heading 'East'");
+        assertThat(result).isEqualTo("Marsrover moved to '4,0' heading 'East'");
     }
 
     @Test
     void roverShouldCrashWhenItHitsAnObstacle() {
-        var result = MarsRoverSimulatorApp.run("5,1", "S", MAP, "BRFF");
+        var result = MarsRoverSimulatorApp.run("4,1", "S", MAP, "BRFF");
 
-        assertThat(result).isEqualTo("Marsrover crashed at '1,3' heading 'North'");
+        assertThat(result).isEqualTo("Marsrover crashed at '2,0' heading 'West'");
     }
 }
