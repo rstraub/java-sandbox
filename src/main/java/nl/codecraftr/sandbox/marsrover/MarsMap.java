@@ -1,5 +1,7 @@
 package nl.codecraftr.sandbox.marsrover;
 
+import static nl.codecraftr.sandbox.marsrover.Terrain.Ground;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,6 +17,10 @@ class MarsMap {
         map = locations.stream()
                 .collect(Collectors.toMap(
                         Location::position, Location::terrain, (existing, replacement) -> existing, HashMap::new));
+    }
+
+    boolean canMoveTo(Position position) {
+        return map.get(position).equals(Ground);
     }
 }
 
