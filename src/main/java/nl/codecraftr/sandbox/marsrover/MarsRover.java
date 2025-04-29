@@ -6,6 +6,10 @@ import lombok.With;
 
 record MarsRover(@With Position position, @With Direction direction, @With boolean operational) {
     public MarsRover instruct(Command command) {
+        if (!operational()) {
+            return this;
+        }
+
         return switch (command) {
             case TURN_LEFT -> turnLeft();
             case TURN_RIGHT -> turnRight();

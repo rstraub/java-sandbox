@@ -7,6 +7,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.EnumSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class MarsRoverTest {
@@ -78,5 +79,13 @@ class MarsRoverTest {
                 Arguments.of(NORTH, new Position(0, 0), new Position(0, 1)),
                 Arguments.of(EAST, new Position(4, 0), new Position(3, 0)),
                 Arguments.of(WEST, new Position(0, 0), new Position(1, 0)));
+    }
+
+    @ParameterizedTest
+    @EnumSource(Command.class)
+    void commandsAreIgnoredWhenRoverHasCrashed(Command command) {
+        var crashed = aRover.crashed();
+
+        assertThat(crashed.instruct(command)).isEqualTo(crashed);
     }
 }

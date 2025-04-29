@@ -11,10 +11,6 @@ class MarsRoverSimulator {
     }
 
     private MarsRover moveRover(MarsRover rover, MarsMap map, Command command) {
-        if (!rover.operational()) {
-            return rover;
-        }
-
         var moved = rover.instruct(command);
 
         if (map.canMoveTo(moved.position())) {
